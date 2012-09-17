@@ -1,0 +1,19 @@
+<% title "Menus" %>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Price</th>
+  </tr>
+  <% for menu in @menus %>
+    <tr>
+      <td><%= menu.item %></td>
+      <td><%= menu.price %></td>
+      <td><%= link_to "Show", menu %></td>
+      <td><%= link_to "Edit", edit_supplier_menu_path(menu) %></td>
+      <td><%= link_to "Destroy", menu, :confirm => t('confirmation'), :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Menu", new_supplier_menu_path %></p>

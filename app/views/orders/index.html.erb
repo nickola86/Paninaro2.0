@@ -1,0 +1,47 @@
+<% title "Orders" 
+   prev_order = nil
+   succ_order = nil
+%>
+<% if @orders.length > 0 %>
+    <% for order in @orders %>
+      <% if prev_order.nil?
+           %>
+	     <h3>Orders placed on <%=to_date order.created_at%></h3>
+             <table>
+               <tr>
+                 <th>Description</th>
+                 <th>Price</th>
+                 <th>Supplier</th>
+		 <th colspan="2"></th>
+               </tr>
+	   <%
+         else
+           if to_date(prev_order.created_at) != to_date(order.created_at)
+	     %>
+	        </table>
+	        <h3>Orders placed on <%=to_date order.created_at%></h3>
+                <table>
+                  <tr>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Supplier</th>
+		    <th colspan="2"></th>
+                  </tr>
+	     <%
+	   end  
+	 end %>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td><%= order.product.name%></td>
+            <td><%= to_currency order.product.price%></td>
+            <td><%= order.supplier.name%></td>
+            <td class="action"><%= link_to image_tag("show.png",:border => 0, :class => "show"), order %></td>
+            <td class="action"><%= link_to image_tag("destroy.png",:border => 0, :class => "destroy"), order, :confirm => 'Are you sure?', :method => :delete %></td>
+          </tr>
+      <%
+         prev_order = order
+       end %>
+     </table>
+     <% else %>
+  <h3>No orders placed</h3>
+<% end %>
+<p><%= link_to "New Order", new_order_path %></p>

@@ -1,0 +1,29 @@
+<% title "Order" %>
+<p>
+  <strong>Placed by:</strong>
+  <%= "#{@order.user.username} (#{@order.user.email})"%>
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @order.product.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @order.product.description %>
+</p>
+<p>
+  <strong>Price:</strong>
+  <%= to_currency @order.product.price %>
+</p>
+
+<p>
+  <strong>Supplier:</strong>
+  <%= @order.supplier.name %>
+</p>
+
+
+<p>
+  <%= link_to "Destroy", @order, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", today_orders_path %> |
+  <%= link_to "Supplier info", supplier_path(@order.supplier) %>
+</p>

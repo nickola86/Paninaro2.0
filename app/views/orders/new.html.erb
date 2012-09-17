@@ -1,0 +1,28 @@
+<% title "New Single Fast Order" %>
+
+<%= form_for Order.new do |o| %>
+  <%= select("supplier", "id", @suppliers.collect{|s| [s.name,s.id]}, {:include_blank => t('supplier.default_select')}) %>
+  <%= select("product", "id", @products.collect{|p| [p.name,p.supplier_id.to_s+"_"+p.id.to_s]}, {:include_blank => t('product.default_select')}) %>
+  <%= o.submit :id => "add_order"%>
+  <hr />
+  
+<% end %>
+
+<div id="product_details">
+  <table>
+     <tr>
+      <td class="right">Name</td>
+      <td><span id="name"></span></td>
+    </tr>
+    <tr>
+      <td class="right">Description</td>
+      <td><span id="description"></span></td>
+    </tr>
+    <tr>
+      <td class="right">Price</td>
+      <td><span id="price"></span></td>
+    </tr>
+  </table>
+</div>
+
+<p><%= link_to "Back to List", today_orders_path %></p>

@@ -1,0 +1,19 @@
+
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @product.description %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= to_currency(@product.price) %>
+</p>
+
+
+<%= link_to 'Edit', edit_supplier_product_path(@supplier,@product) %> |
+<%= link_to 'Back', supplier_products_path(@supplier) %>
